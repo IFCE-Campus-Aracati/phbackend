@@ -1,0 +1,301 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PrintHub API Documentation",
+    "description": "This is an API for print requests",
+    "version": "0.0.1",
+    "contact": {
+      "email": "mairon.santana.nascimento60@aluno.ifce.edu.br"
+    }
+  },
+  "paths": {
+    "/signUp": {
+      "post": {
+        "tags": ["Authenticate"],
+        "summary": "Create user",
+        "description": "Sign up a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "E-mail não informado ou Usuário já cadastrado"
+          }
+        }
+      }
+    },
+    "/signIn": {
+      "post": {
+        "tags": ["Authenticate"],
+        "summary": "Sign in a user",
+        "description": "Authentication user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Usuário ou senha incorreta"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["User"],
+        "summary": "List all users",
+        "description": "List all users",
+        "security": [
+          {"bearerAuth": []}
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties":{
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "role": {
+                        "type": "string"
+                      },
+                      "profile_photo": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/detailsUser": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get user information",
+        "description": "Get user information",
+        "security": [
+          {"bearerAuth": []}
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties":{
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    },
+                    "profile_photo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resetPassword": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Change password",
+        "description": "Change password",
+        "security": [
+          {"bearerAuth": []}
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "oldPassword": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Senha alterada com sucesso!"
+          },
+          "400": {
+            "description": "A nova senha não pode ser igual a anterior"
+          }
+        }
+      }
+    },
+    "/changeRole": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Change role",
+        "description": "Change role",
+        "security": [
+          {"bearerAuth": []}
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cargo atualizado com sucesso"
+          },
+          "400": {
+            "description": "Cargo de usuário não informado"
+         }
+        }
+      }
+    },
+    "/updateUserPhoto": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Update profile picture",
+        "description": "Update profile picture",
+        "security": [
+          {"bearerAuth": []}
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string"
+                  },
+                  "profile_photo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Foto de perfil atualizada com sucesso"
+          },
+          "400": {
+            "description": "Erro no envio do arquivo"
+         }
+        }
+      }
+    },
+    "/deleteUser": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Delete an user",
+        "description": "Delete an user",
+        "security": [
+          {"bearerAuth": []}
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário deletado com sucesso"
+          },
+          "401": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      }
+    }    
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
