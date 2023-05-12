@@ -23,3 +23,17 @@ model User {
 
   @@map("users")
 }
+
+model Printer {
+  id          String @id @default(uuid())
+  title       String
+  material    String
+  type        String
+  status      String @default("avalable")
+  description String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("printers")
+}
