@@ -13,6 +13,11 @@ import { isAdmin } from "./middlewares/isAdmin";
 import { ChangeUserRoleController } from "./controllers/user/ChangeUserRoleController";
 
 import uploadConfig from "./config/multer";
+import { CreatePrinterController } from "./controllers/printer/CreatePrinterController";
+import { GetAllPrinterController } from "./controllers/printer/GetAllPrinterController";
+import { DetailsPrinterController } from "./controllers/printer/DetailsPrinterController";
+import { DeletePrinterController } from "./controllers/printer/DeletePrinterController";
+import { UpdatePrinterController } from "./controllers/printer/UpdatePrinterController";
 
 const router = Router();
 
@@ -26,5 +31,11 @@ router.put("/updateUserPhoto", isAuthenticated, upload.single("file"), new Updat
 router.put("/changeRole", [isAuthenticated, isAdmin], new ChangeUserRoleController().handle);
 router.get("/users", [isAuthenticated, isAdmin], new GetAllUserController().handle);
 router.post("/deleteUser", [isAuthenticated, isAdmin], new DeleteUserController().handle);
+
+router.post("/createPrinter", [isAuthenticated, isAdmin], new CreatePrinterController().handle);
+router.get("/printers", [isAuthenticated, isAdmin], new GetAllPrinterController().handle);
+router.get("/detailsPrinter", [isAuthenticated, isAdmin], new DetailsPrinterController().handle);
+router.delete("/deletePrinter", [isAuthenticated, isAdmin], new DeletePrinterController().handle);
+router.put("/updatePrinter", [isAuthenticated, isAdmin], new UpdatePrinterController().handle);
 
 export { router };
