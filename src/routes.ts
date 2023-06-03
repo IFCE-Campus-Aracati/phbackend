@@ -30,7 +30,7 @@ router.put("/resetPassword", isAuthenticated, new ResetUserPasswordController().
 router.put("/updateUserPhoto", isAuthenticated, upload.single("file"), new UpdateUserPhotoController().handle);
 router.put("/changeRole", [isAuthenticated, isAdmin], new ChangeUserRoleController().handle);
 router.get("/users", [isAuthenticated, isAdmin], new GetAllUserController().handle);
-router.post("/deleteUser", [isAuthenticated, isAdmin], new DeleteUserController().handle);
+router.delete("/deleteUser", [isAuthenticated, isAdmin], new DeleteUserController().handle);
 
 router.post("/createPrinter", [isAuthenticated, isAdmin], new CreatePrinterController().handle);
 router.get("/printers", [isAuthenticated, isAdmin], new GetAllPrinterController().handle);
