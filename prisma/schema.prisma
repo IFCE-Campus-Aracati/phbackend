@@ -1,6 +1,5 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -21,6 +20,8 @@ model User {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
+  prints Print[]
+
   @@map("users")
 }
 
@@ -35,5 +36,30 @@ model Printer {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
+  prints Print[]
+
   @@map("printers")
+}
+
+model Print {
+  id                String    @id @default(uuid())
+  identifier        String    @default(uuid())
+  title             String
+  description       String
+  status            String    @default("pending")
+  material          String
+  archive           String
+  printing_date     DateTime?
+  printing_duration String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  owner    User   @relation(fields: [owner_id], references: [id])
+  owner_id String
+
+  printer    Printer? @relation(fields: [printer_id], references: [id])
+  printer_id String?
+
+  @@map("prints")
 }

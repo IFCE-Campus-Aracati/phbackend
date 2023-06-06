@@ -18,6 +18,13 @@ import { GetAllPrinterController } from "./controllers/printer/GetAllPrinterCont
 import { DetailsPrinterController } from "./controllers/printer/DetailsPrinterController";
 import { DeletePrinterController } from "./controllers/printer/DeletePrinterController";
 import { UpdatePrinterController } from "./controllers/printer/UpdatePrinterController";
+import { CreaterPrintController } from "./controllers/print/CreatePrintController";
+import { UpdatePrintOwnerController } from "./controllers/print/UpdatePrintOwnerController";
+import { UpdatePrintController } from "./controllers/print/UpdatePrintController";
+import { DeletePrintController } from "./controllers/print/DeletePrintController";
+import { GetAllPrintController } from "./controllers/print/GetAllPrintController";
+import { GetUserPrintController } from "./controllers/print/GetUserPrintController";
+import { SearchByIdPrintControler } from "./controllers/print/SearchByIdPrintController";
 
 const router = Router();
 
@@ -37,5 +44,13 @@ router.get("/printers", [isAuthenticated, isAdmin], new GetAllPrinterController(
 router.get("/detailsPrinter", [isAuthenticated, isAdmin], new DetailsPrinterController().handle);
 router.delete("/deletePrinter", [isAuthenticated, isAdmin], new DeletePrinterController().handle);
 router.put("/updatePrinter", [isAuthenticated, isAdmin], new UpdatePrinterController().handle);
+
+router.post("/createPrint", isAuthenticated, upload.single("file"), new CreaterPrintController().handle);
+router.put("/updatePrintOwner", isAuthenticated, upload.single("file"), new UpdatePrintOwnerController().handle);
+router.put("/updatePrint", [isAuthenticated, isAdmin], new UpdatePrintController().handle);
+router.delete("/deletePrint", isAuthenticated, new DeletePrintController().handle);
+router.get("/getAllPrints", [isAuthenticated, isAdmin], new GetAllPrintController().handle);
+router.get("/getUserPrint", isAuthenticated, new GetUserPrintController().handle);
+router.get("/searchByIdPrint", new SearchByIdPrintControler().handle);
 
 export { router };
