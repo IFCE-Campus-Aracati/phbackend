@@ -25,6 +25,7 @@ import { DeletePrintController } from "./controllers/print/DeletePrintController
 import { GetAllPrintController } from "./controllers/print/GetAllPrintController";
 import { GetUserPrintController } from "./controllers/print/GetUserPrintController";
 import { SearchByIdPrintControler } from "./controllers/print/SearchByIdPrintController";
+import { ViewUserController } from "./controllers/user/ViewUserController";
 
 const router = Router();
 
@@ -38,6 +39,7 @@ router.put("/updateUserPhoto", isAuthenticated, upload.single("file"), new Updat
 router.put("/changeRole", [isAuthenticated, isAdmin], new ChangeUserRoleController().handle);
 router.get("/users", [isAuthenticated, isAdmin], new GetAllUserController().handle);
 router.delete("/deleteUser", [isAuthenticated, isAdmin], new DeleteUserController().handle);
+router.get("/view", [isAuthenticated, isAdmin], new ViewUserController().handle);
 
 router.post("/createPrinter", [isAuthenticated, isAdmin], new CreatePrinterController().handle);
 router.get("/printers", [isAuthenticated, isAdmin], new GetAllPrinterController().handle);
