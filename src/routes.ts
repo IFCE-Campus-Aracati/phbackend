@@ -39,7 +39,7 @@ router.put("/updateUserPhoto", isAuthenticated, upload.single("file"), new Updat
 router.put("/changeRole", [isAuthenticated, isAdmin], new ChangeUserRoleController().handle);
 router.get("/users", [isAuthenticated, isAdmin], new GetAllUserController().handle);
 router.delete("/deleteUser", [isAuthenticated, isAdmin], new DeleteUserController().handle);
-router.get("/view", [isAuthenticated, isAdmin], new ViewUserController().handle);
+router.get("/viewUser", [isAuthenticated, isAdmin], new ViewUserController().handle);
 
 router.post("/createPrinter", [isAuthenticated, isAdmin], new CreatePrinterController().handle);
 router.get("/printers", [isAuthenticated, isAdmin], new GetAllPrinterController().handle);
