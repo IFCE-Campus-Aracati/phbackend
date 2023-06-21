@@ -3,7 +3,7 @@ import { DeleteUserService } from "../../services/user/DeleteUserService";
 
 class DeleteUserController {
   async handle(req: Request, res: Response) {
-    const { id } = req.body;
+    const { id } = req.params;
 
     const deleteUserService = new DeleteUserService();
 

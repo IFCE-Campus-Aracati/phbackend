@@ -15,8 +15,6 @@ class CreatePrintService {
       where: { id: owner },
     });
 
-    console.log("CHEGOU AQUI!");
-
     if (!user) {
       throw new BadRequestError("Usuário não encontrado");
     }

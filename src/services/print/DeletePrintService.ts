@@ -1,14 +1,9 @@
 import { BadRequestError } from "../../helpers/api-errors";
 import prismaClient from "../../prisma";
-
-interface DeletePrintRequest {
-  print_id: string;
-}
-
 class DeletePrintService {
-  async execute({ print_id }: DeletePrintRequest) {
+  async execute(id_print: string) {
     const printExists = await prismaClient.print.findFirst({
-      where: { id: print_id },
+      where: { id: id_print },
     });
 
     if (!printExists) {

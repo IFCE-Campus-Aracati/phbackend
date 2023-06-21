@@ -3,7 +3,7 @@ import { ViewUserService } from "../../services/user/ViewUserService";
 
 class ViewUserController {
   async handle(req: Request, res: Response) {
-    const { id } = req.body;
+    const { id } = req.params;
 
     const viewUserService = new ViewUserService();
 

@@ -1,19 +1,13 @@
 import { BadRequestError } from "../../helpers/api-errors";
 import prismaClient from "../../prisma";
-
-interface DeletePrinterRequest {
-  id: string;
-}
-
-
 class DeletePrinterService {
-  async execute({ id }: DeletePrinterRequest) {
-    if (!id) {
+  async execute(id_printer: string) {
+    if (!id_printer) {
       throw new BadRequestError("ID da impressora não informado");
     }
 
     const printer = await prismaClient.printer.delete({
-      where: { id: id },
+      where: { id: id_printer },
     });
 
     if (!printer) {
@@ -26,4 +20,4 @@ class DeletePrinterService {
   }
 }
 
-export { DeletePrinterService }
+export { DeletePrinterService };

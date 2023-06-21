@@ -3,7 +3,7 @@ import { SearchByIdPrintService } from "../../services/print/SearchByIdPrintServ
 
 class SearchByIdPrintControler {
   async handle(req: Request, res: Response) {
-    const { identifier } = req.body;
+    const { identifier } = req.params;
 
     const searchByIdPrintService = new SearchByIdPrintService();
 

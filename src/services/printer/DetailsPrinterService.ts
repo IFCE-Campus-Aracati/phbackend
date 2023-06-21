@@ -1,14 +1,13 @@
-import prismaClient from "../../prisma"
+import prismaClient from "../../prisma";
 
-
-class DetailsPrinterService{
-  async execute(id: string){
+class DetailsPrinterService {
+  async execute(id_printer: string) {
     const printer = await prismaClient.printer.findFirst({
-      where: {id: id}
+      where: { id: id_printer },
     });
 
-    return printer
+    return printer;
   }
 }
 
-export {DetailsPrinterService}
+export { DetailsPrinterService };
