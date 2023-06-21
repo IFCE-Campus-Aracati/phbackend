@@ -30,7 +30,7 @@ model Printer {
   title       String
   material    String
   type        String
-  status      String @default("avalable")
+  status      String @default("available")
   description String
 
   created_at DateTime? @default(now())
