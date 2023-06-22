@@ -14,6 +14,13 @@ class GetAllPrintService {
         orderBy: {
           created_at: "desc",
         },
+        include: {
+          owner: {
+            select: {
+              name: true,
+            },
+          },
+        },
       }),
       prismaClient.print.count(),
     ]);
