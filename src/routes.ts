@@ -37,12 +37,12 @@ router.get("/detailsUser", isAuthenticated, new DetailsUserController().handle);
 router.put("/resetPassword", isAuthenticated, new ResetUserPasswordController().handle);
 router.put("/updateUserPhoto", isAuthenticated, upload.single("file"), new UpdateUserPhotoController().handle);
 router.put("/changeRole", [isAuthenticated, isAdmin], new ChangeUserRoleController().handle);
-router.get("/users", [isAuthenticated, isAdmin], new GetAllUserController().handle);
+router.get("/users/:page", [isAuthenticated, isAdmin], new GetAllUserController().handle);
 router.delete("/deleteUser/:id", [isAuthenticated, isAdmin], new DeleteUserController().handle);
 router.get("/viewUser/:id", [isAuthenticated, isAdmin], new ViewUserController().handle);
 
 router.post("/createPrinter", [isAuthenticated, isAdmin], new CreatePrinterController().handle);
-router.get("/printers", [isAuthenticated, isAdmin], new GetAllPrinterController().handle);
+router.get("/printers/:page", [isAuthenticated, isAdmin], new GetAllPrinterController().handle);
 router.get("/detailsPrinter/:id_printer", [isAuthenticated, isAdmin], new DetailsPrinterController().handle);
 router.delete("/deletePrinter/:id_printer", [isAuthenticated, isAdmin], new DeletePrinterController().handle);
 router.put("/updatePrinter", [isAuthenticated, isAdmin], new UpdatePrinterController().handle);
@@ -51,8 +51,8 @@ router.post("/createPrint", isAuthenticated, upload.single("file"), new CreaterP
 router.put("/updatePrintOwner", isAuthenticated, upload.single("file"), new UpdatePrintOwnerController().handle);
 router.put("/updatePrint", [isAuthenticated, isAdmin], new UpdatePrintController().handle);
 router.delete("/deletePrint/:id_print", isAuthenticated, new DeletePrintController().handle);
-router.get("/getAllPrints", [isAuthenticated, isAdmin], new GetAllPrintController().handle);
-router.get("/getUserPrint", isAuthenticated, new GetUserPrintController().handle);
+router.get("/getAllPrints/:page", [isAuthenticated, isAdmin], new GetAllPrintController().handle);
+router.get("/getUserPrint/:page", isAuthenticated, new GetUserPrintController().handle);
 router.get("/searchByIdPrint/:identifier", new SearchByIdPrintControler().handle);
 
 export { router };
