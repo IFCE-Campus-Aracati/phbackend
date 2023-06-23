@@ -26,6 +26,7 @@ import { GetAllPrintController } from "./controllers/print/GetAllPrintController
 import { GetUserPrintController } from "./controllers/print/GetUserPrintController";
 import { SearchByIdPrintControler } from "./controllers/print/SearchByIdPrintController";
 import { ViewUserController } from "./controllers/user/ViewUserController";
+import { CreatePrintAnonimousController } from "./controllers/print/CreatePrintAnonimousController";
 
 const router = Router();
 
@@ -48,6 +49,7 @@ router.delete("/deletePrinter/:id_printer", [isAuthenticated, isAdmin], new Dele
 router.put("/updatePrinter", [isAuthenticated, isAdmin], new UpdatePrinterController().handle);
 
 router.post("/createPrint", isAuthenticated, upload.single("file"), new CreaterPrintController().handle);
+router.post("/createPrintAnonimous", upload.single("file"), new CreatePrintAnonimousController().handle);
 router.put("/updatePrintOwner", isAuthenticated, upload.single("file"), new UpdatePrintOwnerController().handle);
 router.put("/updatePrint", [isAuthenticated, isAdmin], new UpdatePrintController().handle);
 router.delete("/deletePrint/:id_print", isAuthenticated, new DeletePrintController().handle);
